@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SG_Cart</title>
+    <link rel="stylesheet" href="/css/cart.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+  </head>
+
+  <body>
+    <header>
+        <div class="headerRow">
+          <div class="headerColumn">
+            <a href="./">
+              <img src="../img/home.svg" />
+            </a>
+          </div>
+          <div class="headerColumn">
+            <a href="./">
+              <h2>SHOP</h2>
+            </a>
+          </div>
+          <% if(loggedUser){ %>
+          <div class="headerColumn">
+            <a href="https://www.instagram.com/juunzzi/">
+              <img src="../img/search.svg" />
+            </a>
+            <a href="<%=routes.logout%>">
+              <span id="Login">Logout</span>
+            </a>
+            <a href="<%=routes.userDetail(loggedUser.id)%>">
+              <span id="mypage">MyPage</span>
+            </a>
+            <a href="<%=routes.shoppingBasket(loggedUser.id)%>">
+              <span id="cart">Cart</span>
+            </a>
+          </div>
+          <% }else{ %>
+          <div class="headerColumn">
+            <a href="https://www.instagram.com/juunzzi/">
+              <img src="../img/search.svg" />
+            </a>
+            <a href="<%=routes.login%>">
+              <span id="Login">Login</span>
+            </a>
+            <a href="<%=routes.join%>">
+              <span id="Login">Join</span>
+            </a>
+
+           
+          </div>
+          <% } %>
+        </div>
+        <br />
+        <div class="headerRow">
+          <div class="headerColumn">
+            <a href="./products.html"><span>OUTER</span></a>
+          </div>
+          <div class="headerColumn">
+            <a href="./products.html"><span>TOP</span></a>
+          </div>
+          <div class="headerColumn">
+            <a href="./products.html"><span>BOTTOM</span></a>
+          </div>
+          <div class="headerColumn">
+            <a href="./products.html"><span>SHOES</span></a>
+          </div>
+        </div>
+        <br /><br />
+        <div class="headerRow">
+          <div class="headerColumn">
+            <a href="./sale.html"><span>SALE</span></a>
+          </div>
+          <div class="headerColumn">
+            <a href="./popular.html"><span>POPULAR</span></a>
+          </div>
+          <div class="headerColumn">
+            <a href="./sale.html"><span>SALE</span></a>
+          </div>
+          <div class="headerColumn">
+            <a href="./popular.html"><span>POPULAR</span></a>
+          </div>
+        </div>
+        <br />
+      </header>
+      
+      <div class="itemContainer">
+        <span style="font-size: 30px;margin-bottom:20px;">당신의 주문내역입니다.</span>
+        <div class="item">
+          <div class="itemImage" style="border:1px solid rgba(0,0,0,0.1); border-radius: 30px;">상품이미지</div>
+            <div class="itemName" style="border:1px solid rgba(0,0,0,0.1); border-radius: 30px;">상품 이름</div>
+            <div class="itemCategory" style="border:1px solid rgba(0,0,0,0.1); border-radius: 30px;">주문상태</div>
+            <div class="itemPrice" style="border:1px solid rgba(0,0,0,0.1); border-radius: 30px;">결제금액</div>
+            <div class="itemDiscount" style="border:1px solid rgba(0,0,0,0.1); border-radius: 30px;">주문날짜</div>
+            <div class="itemDiscount" style="border:1px solid rgba(0,0,0,0.1); border-radius: 30px;">삭제하기</div>
+        
+          </div>
+        <% for(var i=0;i<length;i++){%>
+          <div class="item">
+            <div class="itemImage" style="height: 100%;">
+              <img src="../<%=result[i][0].main_img %>" style="width:100%;height:100%">
+            
+            </div>
+            <div class="itemName"><%=result[i][0].name%></div>
+            <div class="itemCategory">
+              <%=orders[i].order_status%>
+            </div>
+            <div class="itemPrice"><%=result[i][0].price%>원</div>
+            <div class="itemDiscount">
+              <%=orders[i].order_date%>
+            </div>
+            <div class="itemDelete">
+              <a href>X</a>
+             </div>
+          </div>
+          <% } %>
+          
+      </div>
+      
+      <div class="orderButton row"></div>
+      
+      <!-- Mypage header section -->
+    </div>
+
+    <footer>
+      <span>copyrightⓒ by supergreat</span>
+    </footer>
+  </body>
+</html>
