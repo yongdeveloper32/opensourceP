@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SG_Item</title>
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/itemDetail.css" />
+  </head>
+  <body>
+    <header>
+      <div class="headerRow">
+        <div class="headerColumn">
+          <a href="./">
+            <img src="../img/home.svg" />
+          </a>
+        </div>
+        <div class="headerColumn">
+          <a href="./">
+            <h2>SHOP</h2>
+          </a>
+        </div>
+        <% if(loggedUser){ %>
+        <div class="headerColumn">
+          <a href="https://www.instagram.com/juunzzi/">
+            <img src="../img/search.svg" />
+          </a>
+          <a href="<%=routes.logout%>">
+            <span id="Login">Logout</span>
+          </a>
+          <a href="<%=routes.userDetail(loggedUser.id)%>">
+            <span id="mypage">MyPage</span>
+          </a>
+          <a href="<%=routes.shoppingBasket(loggedUser.id)%>">
+            <span id="cart">Cart</span>
+          </a>
+        </div>
+        <% }else{ %>
+        <div class="headerColumn">
+          <a href="https://www.instagram.com/juunzzi/">
+            <img src="../img/search.svg" />
+          </a>
+          <a href="<%=routes.login%>">
+            <span id="Login">Login</span>
+          </a>
+          <a href="<%=routes.join%>">
+            <span id="Login">Join</span>
+          </a>
+        </div>
+        <% } %>
+      </div>
+      <br />
+      <div class="headerRow">
+        <div class="headerColumn">
+          <a href="./products.html"><span>OUTER</span></a>
+        </div>
+        <div class="headerColumn">
+          <a href="./products.html"><span>TOP</span></a>
+        </div>
+        <div class="headerColumn">
+          <a href="./products.html"><span>BOTTOM</span></a>
+        </div>
+        <div class="headerColumn">
+          <a href="./products.html"><span>SHOES</span></a>
+        </div>
+      </div>
+      <br /><br />
+      <div class="headerRow">
+        <div class="headerColumn">
+          <a href="./sale.html"><span>SALE</span></a>
+        </div>
+        <div class="headerColumn">
+          <a href="./popular.html"><span>POPULAR</span></a>
+        </div>
+        <div class="headerColumn">
+          <a href="./sale.html"><span>SALE</span></a>
+        </div>
+        <div class="headerColumn">
+          <a href="./popular.html"><span>POPULAR</span></a>
+        </div>
+      </div>
+      <br />
+    </header>
+    <div class="Section">
+      <div class="clothesDetailImg">
+        <img src="../<%=result[0].main_img%>" />
+      </div>
+      <div class="clothesDetailText">
+        <div class="clothesInfo">
+          <div class="clothesText">
+            <span> 제품명: </span>
+            <span> <%=result[0].name%> </span>
+          </div>
+          <div class="clothesText">
+            <span> 카테고리: </span>
+            <span> <%=result[0].category%> </span>
+          </div>
+          <div class="clothesText">
+            <span> 제품가격: </span>
+            <span> <%=result[0].price%> </span>
+          </div>
+          <div class="clothesText">
+            <span> 제품수량: </span>
+            <span> <%=result[0].stock%> </span>
+          </div>
+          <div class="clothesText">
+            <span
+              style="
+                background-color: white;
+                border-radius: 20px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                padding:20px;
+              "
+              ><a href="<%=routes.insertCart(result[0].idx) %>">장바구니 담기</a></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>copyrightⓒ by supergreat</span>
+    </footer>
+  </body>
+</html>
